@@ -15,4 +15,24 @@ shift = int(input("Type the shift number:\n"))
 # TODO-3: Call the 'encrypt()' function and pass in the user inputs. You should be able to test the code and encrypt a
 #  message.
 
+#arra kell rájönnöm hogy hol van az adott betű az abc be a text[i] alapján és úgy eltolnom 
+#valahogy úgy néz ki hogy text[i] = s -> alphabetben hol van .index és utána +shift 
+#ha a total_shift indexExc-t dobna azt le kell kezelni
 
+#ötlet 1
+#zzz-> alp.index = 26 + shift = 2 -> exception de ha én azt mondom hogy amikor ez történik (am try catch de nem azzal fogom) nullázom az alphabet indexet de úgy, hogy:
+#ha total_shift több mint 26 alp.index = 0 
+
+def encrypt(text, shift, alphabet):
+    chars = list(text)
+    for i in range(len(text)):
+        total_shift = shift + alphabet.index(chars[i])
+        if total_shift >= 25:   
+            total_shift = shift - 1
+            chars[i] = alphabet[total_shift]
+        else:
+            chars[i] = alphabet[total_shift]
+    text = "".join(chars)
+    print(text)    
+
+encrypt(text, shift, alphabet)
