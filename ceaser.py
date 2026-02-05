@@ -27,7 +27,7 @@ def encrypt(text, shift, alphabet):
     chars = list(text)
     for i in range(len(text)):
         total_shift = shift + alphabet.index(chars[i])
-        if total_shift >= 25:   
+        if total_shift > 25:   
             total_shift = shift - 1
             chars[i] = alphabet[total_shift]
         else:
@@ -41,6 +41,27 @@ def encrypt(text, shift, alphabet):
 # TODO-3: Combine the 'encrypt()' and 'decrypt()' functions into one function called 'caesar()'.
 #  Use the value of the user chosen 'direction' variable to determine which functionality to use.
 
+def decrypt(text, shift, alphabet):
+    rev_alphabet = alphabet[::-1] 
+    chars = list(text)
+    for i in range(len(text)):
+        total_shift = shift + rev_alphabet.index(chars[i])
+        if total_shift > 25:   
+            total_shift = shift - 1
+            chars[i] = rev_alphabet[total_shift]
+        else:
+            chars[i] = rev_alphabet[total_shift]
+    text = "".join(chars)
+    print(f"Here is your deencrypted text: {text}")
 
-
+def ceasar(direction):
+    if direction == "encode":
+        encrypt(text, shift, alphabet)
+    elif direction == "decode":
+        decrypt(text, shift, alphabet)
+    else:
+        print("Bad input!")
+#decrypt(text, shift, alphabet)
 #encrypt(text, shift, alphabet)
+
+ceasar(direction)
